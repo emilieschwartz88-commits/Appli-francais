@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Maquette – Appli Français 4ème / 3ème</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FBFCFF; --line:#CFDBF2; --margin:#E0556B; --ink:#1F3A8A; --text:#1B2340; --soft:#5B6584;
+  --card:#FFFFFF; --hl:#FFE45E; --hl-text:#1B2340; --border:#C3CFE8;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#141B33; --line:#222D52; --margin:#F0788B; --ink:#9DB7FF; --text:#E8ECFA; --soft:#A2ABC8;
+  --card:#1B2442; --hl:#E8C93A; --hl-text:#141B33; --border:#34406B;}}
+:root[data-theme="dark"]{
+  --paper:#141B33; --line:#222D52; --margin:#F0788B; --ink:#9DB7FF; --text:#E8ECFA; --soft:#A2ABC8;
+  --card:#1B2442; --hl:#E8C93A; --hl-text:#141B33; --border:#34406B;}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;font-family:"Atkinson Hyperlegible",system-ui,sans-serif;color:var(--text);background-color:var(--paper);
+  background-image:linear-gradient(to right,transparent 47px,var(--margin) 47px,var(--margin) 49px,transparent 49px),
+  repeating-linear-gradient(to bottom,transparent 0,transparent 31px,var(--line) 31px,var(--line) 32px);
+  line-height:1.5;min-height:100vh}
+.wrap{max-width:720px;margin:0 auto;padding:20px 16px 60px 64px}
+h1,h2,h3{font-family:"Bricolage Grotesque",sans-serif;margin:0;line-height:1.15;color:var(--ink)}
+h1{font-size:2rem;font-weight:800}
+h2{font-size:1.4rem;font-weight:700;margin:28px 0 10px}
+h3{font-size:1.05rem;font-weight:700}
+p{margin:0 0 10px}
+.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;gap:8px}
+.brand{font-family:"Bricolage Grotesque";font-weight:800;color:var(--ink);font-size:1.05rem}
+.level{display:inline-flex;border:2px solid var(--ink);border-radius:999px;overflow:hidden;background:var(--card)}
+.level button{border:0;background:transparent;color:var(--ink);font:700 .9rem "Atkinson Hyperlegible";padding:6px 14px;cursor:pointer}
+.level button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+button:focus-visible,a:focus-visible{outline:3px solid var(--margin);outline-offset:2px}
+.hero p{font-size:1.1rem;max-width:48ch}
+mark{background:var(--hl);color:var(--hl-text);padding:0 4px}
+.scan{display:flex;align-items:center;gap:14px;width:100%;text-align:left;background:var(--ink);color:var(--paper);border:0;border-radius:14px;padding:18px;margin:18px 0 6px;cursor:pointer;font:700 1.1rem "Bricolage Grotesque"}
+.scan small{display:block;font:400 .9rem "Atkinson Hyperlegible";opacity:.9}
+.scan svg{flex:none}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+.entry{background:var(--card);border:2px solid var(--border);border-radius:14px;padding:16px;text-align:left;cursor:pointer;color:var(--text);font:inherit}
+.entry:hover{border-color:var(--ink)}
+.entry h3{margin-bottom:4px}
+.entry span{color:var(--soft);font-size:.95rem}
+.list{display:grid;gap:10px}
+.item{display:flex;gap:12px;align-items:center;background:var(--card);border:2px solid var(--border);border-radius:12px;padding:12px 14px;cursor:pointer;text-align:left;color:var(--text);font:inherit;width:100%}
+.item:hover{border-color:var(--ink)}
+.item b{font-family:"Bricolage Grotesque";color:var(--ink)}
+.item small{display:block;color:var(--soft)}
+.ico{flex:none;width:38px;height:38px;border-radius:50%;background:var(--hl);color:var(--hl-text);display:grid;place-items:center;font:800 1rem "Bricolage Grotesque"}
+.back{background:none;border:0;color:var(--ink);font:700 .95rem "Atkinson Hyperlegible";cursor:pointer;padding:4px 0;margin-bottom:6px;text-decoration:underline}
+.sub{display:none;margin:-4px 0 4px 50px;padding:8px 12px;background:var(--card);border-left:4px solid var(--hl);border-radius:0 8px 8px 0}
+.sub.open{display:block}
+.sub button{display:block;border:0;background:none;color:var(--ink);font:inherit;text-decoration:underline;cursor:pointer;padding:4px 0;text-align:left}
+.exo{background:var(--card);border:2px dashed var(--border);border-radius:12px;padding:14px;margin:12px 0}
+.exo q{font-style:normal;color:var(--ink);font-weight:700}
+.step{background:var(--card);border:2px solid var(--border);border-radius:12px;padding:12px 14px;margin:10px 0}
+.step h3{display:flex;gap:10px;align-items:center}
+.step.locked{opacity:.55;border-style:dashed}
+.step .body{margin-top:8px}
+.btn{border:2px solid var(--ink);background:var(--card);color:var(--ink);border-radius:10px;padding:9px 14px;font:700 .95rem "Atkinson Hyperlegible";cursor:pointer;margin-top:6px}
+.btn.main{background:var(--ink);color:var(--paper)}
+textarea{width:100%;font:inherit;color:var(--text);background:var(--card);border:2px solid var(--border);border-radius:10px;padding:10px;min-height:70px}
+.note{font-size:.9rem;color:var(--soft);border-left:4px solid var(--margin);padding-left:10px;margin-top:22px}
+.view{display:none}.view.on{display:block}
+@media(max-width:520px){.duo{grid-template-columns:1fr}.wrap{padding-left:60px}h1{font-size:1.7rem}}
+@media(prefers-reduced-motion:no-preference){.view.on{animation:in .25s ease-out}@keyframes in{from{opacity:0;transform:translateY(6px)}}}
+.top{flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:6px;border:2px solid var(--border);background:var(--card);color:var(--ink);border-radius:999px;padding:3px 12px 3px 4px;font:700 .95rem "Atkinson Hyperlegible";cursor:pointer}
+.chip:hover{border-color:var(--ink)}
+.chip svg{display:block;border-radius:50%}
+.prof{display:flex;gap:16px;align-items:center;background:var(--card);border:2px solid var(--border);border-radius:14px;padding:14px;margin:12px 0}
+.prof svg{flex:none;border-radius:50%;border:3px solid var(--ink)}
+.bar{height:12px;background:var(--line);border-radius:99px;overflow:hidden;margin:6px 0}
+.bar i{display:block;height:100%;background:var(--ink)}
+.stats{display:flex;gap:8px;flex-wrap:wrap}
+.stats span{background:var(--hl);color:var(--hl-text);border-radius:99px;padding:2px 12px;font-weight:700;font-size:.9rem}
+.shop{display:flex;gap:8px;flex-wrap:wrap}
+.opt{display:flex;flex-direction:column;align-items:center;gap:2px;min-width:84px;border:2px solid var(--border);background:var(--card);color:var(--text);border-radius:12px;padding:8px;font:inherit;font-size:.9rem;cursor:pointer}
+.opt.on{border-color:var(--ink);box-shadow:0 0 0 2px var(--ink)}
+.opt.off{opacity:.6;border-style:dashed}
+.opt small{color:var(--soft)}
+.sw{width:26px;height:26px;border-radius:50%;border:2px solid var(--border)}
+.badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+.badge{background:var(--card);border:2px solid var(--border);border-radius:12px;padding:10px;font-size:.9rem}
+.badge b{display:block;color:var(--ink);font-family:"Bricolage Grotesque"}
+.badge.lock{opacity:.5;border-style:dashed}
+.quest{display:flex;gap:12px;align-items:center;background:var(--hl);color:var(--hl-text);border-radius:12px;padding:12px 14px;margin-top:14px}
+.quest b{font-family:"Bricolage Grotesque"}
+#toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--paper);padding:10px 18px;border-radius:99px;font-weight:700;opacity:0;pointer-events:none;transition:opacity .2s;max-width:90vw;text-align:center}
+#toast.show{opacity:1}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <span class="brand">Français&nbsp;: je travaille seul·e</span>
+    <button class="chip" id="chip" data-go="profil" aria-label="Mon profil et mes étoiles"></button>
+    <div class="level" role="group" aria-label="Niveau">
+      <button id="l4" aria-pressed="true">4ème</button><button id="l3" aria-pressed="false">3ème</button>
+    </div>
+  </div>
+
+  <!-- ACCUEIL -->
+  <section class="view on" id="home">
+    <div class="hero">
+      <h1>Tu bloques sur un exercice&nbsp;? On t’aide à <mark>trouver</mark>, pas à copier.</h1>
+      <p>Photographie ton exercice ou ta leçon. L’appli te guide pas à pas, c’est toi qui écris la réponse.</p>
+    </div>
+    <button class="scan" data-go="aide">
+      <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8V6a2 2 0 0 1 2-2h2M16 4h2a2 2 0 0 1 2 2v2M20 16v2a2 2 0 0 1-2 2h-2M8 20H6a2 2 0 0 1-2-2v-2"/><circle cx="12" cy="12" r="3"/></svg>
+      <span>Scanner mon exercice<small>Prends une photo de ton cahier ou de ton manuel</small></span>
+    </button>
+    <div class="duo">
+      <button class="entry" data-go="besoins"><h3>Par besoin</h3><span>« Je ne comprends pas la consigne », « Je ne sais pas par où commencer »…</span></button>
+      <button class="entry" data-go="competences"><h3>Par compétence</h3><span>Lire, écrire, grammaire, orthographe, lexique, oral.</span></button>
+    </div>
+    <div class="quest"><span class="ico" style="background:var(--card)">★</span><span><b>Défi du jour</b><br>Utilise l’aide guidée, puis vérifie ta réponse&nbsp;: +10 ★. Essayer te rapporte aussi des étoiles.</span></div>
+    <h2>Défis de la semaine</h2><div class="list" id="weekly"></div>
+    <p class="note">Maquette de travail&nbsp;: les écrans sont cliquables, le contenu est un exemple.</p>
+  </section>
+
+  <!-- BESOINS -->
+  <section class="view" id="besoins">
+    <button class="back" data-go="home">Retour</button>
+    <h1>De quoi as-tu besoin&nbsp;?</h1>
+    <h2>Choisis ce qui te ressemble</h2>
+    <div class="list">
+      <button class="item" data-go="aide"><span class="ico">?</span><span><b>Je ne comprends pas la consigne</b><small>On la reformule avec des mots simples</small></span></button>
+      <button class="item" data-go="aide"><span class="ico">1</span><span><b>Je ne sais pas par où commencer</b><small>Une première étape à la fois</small></span></button>
+      <button class="item" data-go="aide"><span class="ico">…</span><span><b>Je bloque sur une notion</b><small>Rappel de cours et exemple</small></span></button>
+      <button class="item" data-go="aide"><span class="ico">✓</span><span><b>Je veux vérifier mon travail</b><small>Des indices, sans correction toute faite</small></span></button>
+      <button class="item" data-go="competences"><span class="ico">★</span><span><b>Je prépare un contrôle</b><small>Fiches et entraînements par compétence</small></span></button>
+      <button class="item" data-go="competences"><span class="ico">+</span><span><b>Je veux m’entraîner</b><small>Exercices progressifs avec aide intégrée</small></span></button>
+    </div>
+  </section>
+
+  <!-- COMPETENCES -->
+  <section class="view" id="competences">
+    <button class="back" data-go="home">Retour</button>
+    <h1>Mes compétences en français</h1>
+    <h2 id="lvlTitle">Programme de 4ème</h2>
+    <div class="list" id="compList"></div>
+  </section>
+
+  <!-- PROFIL -->
+  <section class="view" id="profil">
+    <button class="back" data-go="home">Retour</button>
+    <h1>Mon profil</h1>
+    <div id="profBody"></div>
+  </section>
+  <div id="toast" role="status" aria-live="polite"></div>
+
+  <!-- AIDE -->
+  <section class="view" id="aide">
+    <button class="back" data-go="home">Retour</button>
+    <h1>Je suis là pour t’aider</h1>
+    <div class="exo"><small>Exercice détecté sur ta photo</small><br><q>Relève les propositions subordonnées dans la phrase&nbsp;: « Je sais que tu viendras quand tu auras fini. »</q><br><small>Compétence&nbsp;: Grammaire – la phrase complexe</small></div>
+    <p>Débloque les aides une par une. Essaie toujours avant de passer à la suivante.</p>
+    <div id="steps"></div>
+    <h2>Vérifier ma réponse</h2>
+    <textarea id="rep" placeholder="Écris ici ta réponse…" aria-label="Ma réponse"></textarea>
+    <button class="btn main" id="check">Vérifier avec des indices</button>
+    <div class="step" id="fb" hidden></div>
+    <p class="note">L’appli ne donne jamais la réponse à l’exercice scanné&nbsp;: elle t’aide à la construire.</p>
+  </section>
+</div>
+
+<script>
+var level="4";
+var COMP={
+ "4":[["Lire et comprendre","Dégager le sens d’un texte littéraire, repérer le point de vue",["Repérer le narrateur et le point de vue","Comprendre un texte argumentatif","Interpréter un poème"]],
+      ["Écrire","Rédiger un récit, une description, un texte argumentatif",["Écrire un récit à la 1re personne","Enrichir une description","Construire un paragraphe argumenté"]],
+      ["Grammaire","La phrase complexe, les propositions, les fonctions",["Propositions subordonnées","Les compléments circonstanciels","Les temps du récit"]],
+      ["Orthographe","Accords, homophones, participes passés",["Accord du participe passé","Homophones grammaticaux","Conjugaison : passé simple"]],
+      ["Lexique","Sens des mots, figures de style, champs lexicaux",["Champ lexical","Comparaison et métaphore","Famille de mots"]],
+      ["Oral","Présenter, argumenter, lire à voix haute",["Préparer un exposé","Lire avec expressivité"]]],
+ "3":[["Lire et comprendre","Analyser un texte, un discours, une image",["Analyser un texte argumentatif","Comprendre l’implicite","Lire une image"]],
+      ["Écrire","Argumenter, rédiger un texte pour le brevet",["Rédiger une dissertation courte","Écrire un texte d’invention","Dictée du brevet"]],
+      ["Grammaire","Analyse grammaticale et subordonnées complexes",["Subordonnées circonstancielles","Valeurs des temps et des modes","Voix passive"]],
+      ["Orthographe","Révision pour le brevet",["Accords complexes","Participes passés difficiles"]],
+      ["Lexique","Registres, connotation, figures d’opposition",["Registres de langue","Dénotation et connotation"]],
+      ["Oral","Soutenance et débat",["Préparer l’oral du brevet","Argumenter à l’oral"]]]
+};
+var STEPS=[
+ ["Reformuler la consigne","On te demande de repérer, dans la phrase, les parties qui dépendent d’un verbe et qui commencent par un mot de liaison (« que », « quand »…). Tu dois les relever, pas les expliquer."],
+ ["Rappel de cours","Une proposition subordonnée dépend d’une autre proposition, la principale. Elle est souvent introduite par une conjonction de subordination ou un pronom relatif. Compte les verbes conjugués : il y a autant de propositions que de verbes."],
+ ["Question-guide","Combien de verbes conjugués vois-tu dans la phrase ? Quel mot relie chaque verbe supplémentaire au reste de la phrase ?"],
+ ["Exemple semblable","Dans « Elle espère que tu réussiras quand tu travailleras sérieusement », la principale est « Elle espère » ; les deux autres propositions dépendent de ce qui précède. À toi de faire la même démarche avec ta phrase."]
+];
+var unlocked=1;
+function go(id){document.querySelectorAll(".view").forEach(function(v){v.classList.toggle("on",v.id===id)});if(id==="aide")renderSteps();if(id==="profil")renderProfil();visit(id);window.scrollTo(0,0);try{history.replaceState(null,"","#"+id)}catch(e){}}
+document.addEventListener("click",function(e){var t=e.target.closest("[data-go]");if(t)go(t.dataset.go)});
+function setLevel(l){level=l;document.getElementById("l4").setAttribute("aria-pressed",l==="4");document.getElementById("l3").setAttribute("aria-pressed",l==="3");document.getElementById("lvlTitle").textContent="Programme de "+l+"ème";renderComp()}
+document.getElementById("l4").onclick=function(){setLevel("4")};
+document.getElementById("l3").onclick=function(){setLevel("3")};
+function renderComp(){
+  var h="";COMP[level].forEach(function(c,i){
+    h+='<button class="item" data-sub="'+i+'"><span class="ico">'+c[0][0]+'</span><span><b>'+c[0]+'</b><small>'+c[1]+'</small></span></button><div class="sub" id="sub'+i+'">';
+    c[2].forEach(function(s){h+='<button data-go="aide" data-c="'+c[0]+'">'+s+'</button>'});h+='</div>';});
+  var el=document.getElementById("compList");el.innerHTML=h;
+  el.querySelectorAll("[data-sub]").forEach(function(b){b.onclick=function(){document.getElementById("sub"+b.dataset.sub).classList.toggle("open")}});
+}
+function renderSteps(){
+  var h="";STEPS.forEach(function(s,i){
+    var open=i<unlocked;
+    h+='<div class="step'+(open?"":" locked")+'"><h3><span class="ico">'+(i+1)+'</span>'+s[0]+'</h3>'+(open?'<div class="body">'+s[1]+'</div>':'')+'</div>';});
+  if(unlocked<STEPS.length)h+='<button class="btn" id="more">J’ai essayé, je veux une aide de plus</button>';
+  document.getElementById("steps").innerHTML=h;
+  var m=document.getElementById("more");if(m)m.onclick=function(){unlocked++;if(S.tries<4){S.tries++;earn(2,"Bravo, tu as essayé d’abord : +2 ★")}renderSteps()};
+}
+document.getElementById("check").onclick=function(){
+  var v=document.getElementById("rep").value.trim(),f=document.getElementById("fb");f.hidden=false;if(v)earn(10,"Réponse vérifiée : +10 ★",true);
+  f.innerHTML=v?'<h3>Indices</h3><div class="body">Relis ta réponse&nbsp;: as-tu bien trouvé autant de propositions que de verbes conjugués&nbsp;? Vérifie que chaque subordonnée commence par son mot introducteur. Corrige, puis vérifie à nouveau.</div>':'<div class="body">Écris d’abord une réponse, même incomplète&nbsp;: c’est à partir d’elle que je pourrai t’aider.</div>';
+};
+renderComp();
+var S={stars:20,xp:0,owned:["c-bleu","c-rose","a-aucun","b-papier"],eq:{c:"bleu",a:"aucun",b:"papier"},checks:0,tries:0,streak:1,last:"",seen:{}};
+try{var raw=localStorage.getItem("fr-game");if(raw)S=Object.assign(S,JSON.parse(raw))}catch(e){}
+var COL={bleu:"#3A5BD9",rose:"#E0556B",vert:"#2FA36B",orange:"#F08A24",violet:"#7A4FD1",turquoise:"#1FA3B8"};
+var BG={papier:"#FFF3B0",ciel:"#CFE3FF",menthe:"#CFF2E0",nuit:"#2A2F5B",aurore:"#F6C1D9"};
+var SHOP={c:[["bleu",0],["rose",0],["vert",10],["orange",10],["violet",20],["turquoise",15]],a:[["aucun",0],["lunettes",15],["casque",25],["chapeau",35],["couronne",60],["béret",20],["écharpe",30]],b:[["papier",0],["ciel",10],["menthe",10],["nuit",25],["aurore",40]]};
+var TITLES={c:"Couleur de Mine",a:"Accessoire",b:"Fond"};
+var ACC={béret:'<path d="M28 30q22-24 44 0z" fill="#E0556B"/><circle cx="50" cy="11" r="3" fill="#E0556B"/>',écharpe:'<rect x="31" y="68" width="38" height="10" rx="5" fill="#F08A24"/><rect x="56" y="72" width="8" height="16" rx="3" fill="#F08A24"/>',lunettes:'<g fill="none" stroke="#1B2340" stroke-width="2.5"><circle cx="41" cy="48" r="8"/><circle cx="59" cy="48" r="8"/><path d="M49 48h2"/></g>',casque:'<path d="M30 44a20 20 0 0 1 40 0" stroke="#1B2340" stroke-width="4" fill="none"/><rect x="26" y="42" width="8" height="14" rx="3" fill="#1B2340"/><rect x="66" y="42" width="8" height="14" rx="3" fill="#1B2340"/>',chapeau:'<polygon points="50,8 84,22 50,34 16,22" fill="#1B2340"/><rect x="40" y="30" width="20" height="8" fill="#1B2340"/>',couronne:'<polygon points="32,26 38,10 46,22 50,8 54,22 62,10 68,26" fill="#FFC928" stroke="#B8860B" stroke-width="2"/>'};
+function avatar(e,n){return '<svg width="'+n+'" height="'+n+'" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="50" fill="'+BG[e.b]+'"/><path d="M38 76L50 94L62 76Z" fill="#F2D3A0"/><path d="M46 88L50 94L54 88Z" fill="#1B2340"/><rect x="30" y="22" width="40" height="58" rx="20" fill="'+COL[e.c]+'"/><circle cx="41" cy="48" r="4" fill="#fff"/><circle cx="59" cy="48" r="4" fill="#fff"/><circle cx="42" cy="49" r="2" fill="#1B2340"/><circle cx="60" cy="49" r="2" fill="#1B2340"/><path d="M42 62q8 7 16 0" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round"/>'+(ACC[e.a]||'')+'</svg>'}
+var BADGES=[["Première étoile","Gagne ta 1re étoile",function(){return S.xp>0}],["Explorateur","Visite les deux entrées",function(){return S.seen.besoins&&S.seen.competences}],["Autonome","Vérifie 1 réponse",function(){return S.checks>=1}],["Persévérant","Vérifie 3 réponses",function(){return S.checks>=3}],["Série de 3 jours","Reviens 3 jours de suite",function(){return S.streak>=3}],["Collectionneur","Possède 8 objets",function(){return S.owned.length>=8}],["Pro de la grammaire","Travaille 2 fois la grammaire",function(){return (S.tp||{}).Grammaire>=2}],["Gardien de l’orthographe","Travaille 2 fois l’orthographe",function(){return (S.tp||{}).Orthographe>=2}],["Plume du récit","Travaille 2 fois l’écriture",function(){return (S.tp||{}).Écrire>=2}]];
+function nb(){return BADGES.filter(function(b){return b[2]()}).length}
+var tt;function toast(m){var t=document.getElementById("toast");t.textContent=m;t.classList.add("show");clearTimeout(tt);tt=setTimeout(function(){t.classList.remove("show")},2400)}
+function save(){try{localStorage.setItem("fr-game",JSON.stringify(S))}catch(e){}}
+function chip(){document.getElementById("chip").innerHTML=avatar(S.eq,30)+'<b>'+S.stars+' ★</b>';weekly()}
+function weekly(){var tp=Object.keys(S.tp||{}).length,d=[["Vérifier 3 réponses",S.checks,3],["Essayer avant de demander de l’aide (4 fois)",S.tries,4],["Travailler 2 compétences",tp,2]];
+  document.getElementById("weekly").innerHTML=d.map(function(x){var p=Math.min(x[1],x[2]);return '<div class="item" style="cursor:default"><span class="ico">'+(p>=x[2]?'✓':p+'/'+x[2])+'</span><span style="flex:1"><b>'+x[0]+'</b><div class="bar"><i style="width:'+(p/x[2]*100)+'%"></i></div></span></div>'}).join("")}
+function earn(n,m,c){var b=nb();S.stars+=n;S.xp+=n;if(c)S.checks++;save();chip();toast(nb()>b?"Nouveau badge débloqué !":m)}
+function visit(id){if((id==="besoins"||id==="competences")&&!S.seen[id]){S.seen[id]=1;save()}}
+function pick(k,nm,cost){var key=k+"-"+nm;if(S.owned.indexOf(key)<0){if(S.stars<cost){toast("Il te manque "+(cost-S.stars)+" ★");return}S.stars-=cost;S.owned.push(key);toast("Nouveau : "+nm+" !")}S.eq[k]=nm;save();chip();renderProfil()}
+function renderProfil(){
+  var lvl=Math.floor(S.xp/30)+1,pct=(S.xp%30)/30*100;
+  var h='<div class="prof">'+avatar(S.eq,96)+'<div style="flex:1"><h3>Mine, niveau '+lvl+'</h3><div class="bar"><i style="width:'+pct+'%"></i></div><div class="stats"><span>'+S.stars+' ★</span><span>Série : '+S.streak+' j</span><span>'+nb()+'/'+BADGES.length+' badges</span></div></div></div>';
+  Object.keys(SHOP).forEach(function(k){h+='<h2>'+TITLES[k]+'</h2><div class="shop">';
+    SHOP[k].forEach(function(o){var own=S.owned.indexOf(k+"-"+o[0])>-1,on=S.eq[k]===o[0];
+      var vis=k==="c"?'<span class="sw" style="background:'+COL[o[0]]+'"></span>':k==="b"?'<span class="sw" style="background:'+BG[o[0]]+'"></span>':'<span class="sw" style="display:grid;place-items:center">'+(o[0]==="aucun"?'–':'✦')+'</span>';
+      h+='<button class="opt'+(on?' on':own?'':' off')+'" data-pick="'+k+'|'+o[0]+'|'+o[1]+'" aria-pressed="'+on+'">'+vis+'<b>'+o[0]+'</b><small>'+(on?'Porté':own?'Choisir':o[1]+' ★')+'</small></button>'});
+    h+='</div>'});
+  var cl=312+S.xp;h+='<h2>Défi de la classe</h2><div class="prof" style="display:block"><b>Ensemble, vers 500 ★</b><div class="bar"><i style="width:'+Math.min(100,cl/5)+'%"></i></div><small>La classe a gagné '+cl+' ★. À 500, l’enseignante débloque une récompense collective (ex. 10 min de lecture libre). Pas de classement individuel, pour éviter les comparaisons.</small></div>';
+  h+='<h2>Mes badges</h2><div class="badges">';
+  BADGES.forEach(function(b){var ok=b[2]();h+='<div class="badge'+(ok?'':' lock')+'"><b>'+(ok?'✓ ':'')+b[0]+'</b>'+b[1]+'</div>'});
+  h+='</div><p class="note">Les étoiles récompensent l’effort : essayer avant de demander de l’aide, puis vérifier son travail. Maquette : tu démarres avec 20 ★ pour tester la boutique.</p>';
+  document.getElementById("profBody").innerHTML=h}
+document.addEventListener("click",function(e){var q=e.target.closest("[data-c]");if(q){S.tp=S.tp||{};S.tp[q.dataset.c]=(S.tp[q.dataset.c]||0)+1;save();weekly()}var t=e.target.closest("[data-pick]");if(t){var p=t.dataset.pick.split("|");pick(p[0],p[1],+p[2])}});
+var td=new Date().toISOString().slice(0,10),yd=new Date(Date.now()-864e5).toISOString().slice(0,10);
+if(S.last!==td){S.streak=S.last===yd?S.streak+1:1;S.last=td;save()}
+chip();
+var h=(location.hash||"").slice(1);if(["besoins","competences","aide"].indexOf(h)>-1)go(h);
+</script>
+</body>
+</html>
